@@ -1,4 +1,4 @@
-import {TouchableOpacity} from 'react-native';
+import {TouchableOpacity, TextInput} from 'react-native';
 import styled from 'styled-components/native';
 
 export const Header = styled.View`
@@ -52,3 +52,63 @@ export const AddButton = styled(TouchableOpacity)`
   width: 60px;
 `;
 export const IconAdd = styled.Image``;
+
+export const ModalContainer = styled.View`
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #00000047;
+  position: relative;
+`;
+export const ModalView = styled.View`
+  height: 239px;
+  width: 90%;
+  border-radius: 20px;
+  background-color: #fff;
+  padding: 15px;
+  position: relative;
+`;
+export const CloseButton = styled(TouchableOpacity)`
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  right: 10px;
+  top: 20px;
+`;
+export const IconClose = styled.Image`
+  height: 30px;
+  width: 30px;
+`;
+export const InputContainer = styled.View`
+  width: 100%;
+`;
+export const InputContainerTitle = styled.Text`
+  font-size: 14px;
+  line-height: 17px;
+  color: #121212;
+  margin-top: 45px;
+`;
+export const InputContainerInput = styled(TextInput)`
+  width: 100%;
+  height: 50px;
+  background: #efefef;
+  border-radius: 10px;
+  margin-top: 10px;
+`;
+export const AddTaskButton = styled(TouchableOpacity)`
+  height: 50px;
+  width: 100%;
+  color: #fff;
+  background-color: #f28119;
+  margin-top: 24px;
+  border-radius: 30px;
+  justify-content: center;
+  align-items: center;
+`;
+export const AddTaskButtonTitle = styled.Text`
+  font-size: 16px;
+  line-height: 20px;
+  color: #fff;
+  font-weight: bold;
+`;

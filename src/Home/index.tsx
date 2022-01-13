@@ -27,7 +27,7 @@ import {
 } from './styles';
 import {StatusBar} from 'react-native';
 
-export default function Home() {
+export default function Home({navigation}) {
   return (
     <>
       <StatusBar hidden />
@@ -42,7 +42,7 @@ export default function Home() {
         <ContainerApp>
           <TitlePage>Projetos:</TitlePage>
           <ContainerProjects>
-            <ProjectWork>
+            <ProjectWork onPress={() => navigation.navigate('Work')}>
               <IconFolder source={computer} />
               <FolderTitle>Trabalho</FolderTitle>
               <ContainerTasksFolder>
