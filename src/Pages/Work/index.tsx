@@ -30,22 +30,20 @@ import ItemTodo from './components/itemTodo';
 
 import database from '@react-native-firebase/database';
 
-// let itemsRef = database().ref('Trabalho');
+const newReference = database().ref('/Trabalho').push();
 
 export default function Work() {
   const [modalVisible, setModalVisible] = useState(false);
   const [name, onChangeText] = useState('');
 
   function handleSubmit() {
-    database()
-      .ref('/Trabalho')
+    newReference
       .set({
-        name,
+        id: newReference.key,
+        task: name,
+        isDone: false,
       })
-      .then(() => console.log('Data set.'))
-      .catch(err => {
-        console.log(err);
-      });
+      .then(() => console.log('Data updated.'));
   }
 
   return (
