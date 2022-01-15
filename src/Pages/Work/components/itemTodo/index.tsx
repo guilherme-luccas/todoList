@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import CheckBox from '@react-native-community/checkbox';
 
 import pencil from '../../../../assets/icons/Pencil.png';
@@ -27,8 +27,11 @@ import {
 } from '../../styles';
 import Close from '../../../../assets/icons/Close.png';
 import {useNavigation} from '@react-navigation/native';
+import {MonitorContext} from '../../../../context';
 
 export default function Itemtodo({data}: any) {
+  const {monitor, setMonitor} = useContext(MonitorContext);
+
   const newReference = database().ref(`/Trabalho/${data.id}`);
 
   const [name, onChangeText] = useState(`${data.task}`);
@@ -36,9 +39,6 @@ export default function Itemtodo({data}: any) {
   const [toggleCheckBox, setToggleCheckBox] = useState<boolean>(
     data.isCompleted,
   );
-  const {goBack} = useNavigation();
-
-  console.log('data', data);
 
   function handleSubmitCheckbox(value: boolean) {
     setToggleCheckBox(value);
@@ -55,15 +55,14 @@ export default function Itemtodo({data}: any) {
         task: name,
       })
       .then(() => console.log('Data updated.'));
-    goBack();
+    setModalVisibleEdit(!modalVisibleEdit);
+    setMonitor(!monitor);
   }
 
   async function handleDelete() {
-    await database().ref(`/Trabalho/${data.id}`).remove();
+    await database().ref(`/Trabalho/${data.id}`).set(null);
+    setMonitor(!monitor);
   }
-  // useEffect(() => {
-  //   setToggleCheckBox(data.isCompleted);
-  // }, []);
 
   return (
     <>

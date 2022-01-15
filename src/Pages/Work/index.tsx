@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {Alert, Modal, StatusBar, Text} from 'react-native';
 
 import computer from '../../assets/icons/DesktopTower.png';
@@ -30,6 +30,7 @@ import ItemTodo from './components/itemTodo';
 
 import database from '@react-native-firebase/database';
 import {useNavigation} from '@react-navigation/native';
+import {MonitorContext} from '../../context';
 
 const newReference = database().ref('/Trabalho');
 interface ListProps {
@@ -42,11 +43,12 @@ interface ValueProps {
   task: string;
 }
 export default function Work() {
+  const {monitor, setMonitor} = useContext(MonitorContext);
+
   const [modalVisible, setModalVisible] = useState(false);
 
   const [name, onChangeText] = useState('');
   const [list, setList] = useState<Array<ListProps>>([]);
-  const {goBack} = useNavigation();
   function handleSubmit() {
     newReference
       .push()
@@ -55,7 +57,8 @@ export default function Work() {
         isDone: false,
       })
       .then(() => console.log('Data updated.'));
-    goBack();
+    setModalVisible(!modalVisible);
+    setMonitor(!monitor);
   }
 
   useEffect(() => {
@@ -80,7 +83,7 @@ export default function Work() {
       } catch (err) {}
     }
     getList();
-  }, []);
+  }, [monitor]);
 
   console.log(list);
 
