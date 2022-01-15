@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Alert, Modal, StatusBar} from 'react-native';
+import {Alert, Modal, StatusBar, Text} from 'react-native';
 
 import computer from '../../assets/icons/DesktopTower.png';
 import addButton from '../../assets/icons/AddButtonBlue.png';
@@ -29,22 +29,60 @@ import {
 import ItemTodo from './components/itemTodo';
 
 import database from '@react-native-firebase/database';
+import {useNavigation} from '@react-navigation/native';
 
-const newReference = database().ref('/Trabalho').push();
-
+const newReference = database().ref('/Trabalho');
+interface ListProps {
+  id: string;
+  isCompleted: boolean;
+  task: string;
+}
+interface ValueProps {
+  isDone: boolean;
+  task: string;
+}
 export default function Work() {
   const [modalVisible, setModalVisible] = useState(false);
-  const [name, onChangeText] = useState('');
 
+  const [name, onChangeText] = useState('');
+  const [list, setList] = useState<Array<ListProps>>([]);
+  const {goBack} = useNavigation();
   function handleSubmit() {
     newReference
+      .push()
       .set({
-        id: newReference.key,
         task: name,
         isDone: false,
       })
       .then(() => console.log('Data updated.'));
+    goBack();
   }
+
+  useEffect(() => {
+    async function getList() {
+      try {
+        const listFromFirebase = await database()
+          .ref('/Trabalho')
+          .once('value')
+          .then(snapshot => {
+            const tasks: ValueProps = snapshot.val();
+
+            return Object.entries(tasks).map(([key, value]) => {
+              return {
+                id: key,
+                isCompleted: value.isDone,
+                task: value.task,
+              };
+            });
+          });
+
+        setList(listFromFirebase);
+      } catch (err) {}
+    }
+    getList();
+  }, []);
+
+  console.log(list);
 
   return (
     <>
@@ -63,9 +101,10 @@ export default function Work() {
       </Header>
       <BackgroundContainerApp>
         <ContainerApp>
-          <ItemTodo />
-          <ItemTodo />
-          <ItemTodo />
+          {list?.map(item => {
+            return <ItemTodo key={item.id} data={item} />;
+          })}
+          {/* <ItemTodo /> */}
         </ContainerApp>
       </BackgroundContainerApp>
 
