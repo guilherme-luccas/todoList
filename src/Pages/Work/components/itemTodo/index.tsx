@@ -100,7 +100,7 @@ export default function Itemtodo({data}: any) {
             <InputContainer>
               <InputContainerTitle>Tarefa:</InputContainerTitle>
               <InputContainerInput
-                placeholder="Atualize o nome de sua tarefa"
+                placeholder="Atualize o nome da sua tarefa"
                 onChangeText={text => onChangeText(text)}
               />
               <AddTaskButton onPress={handleSubmit}>

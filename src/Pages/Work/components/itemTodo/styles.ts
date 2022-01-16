@@ -31,6 +31,7 @@ export const TodoName = styled.Text`
   font-size: 16px;
   line-height: 18px;
   color: ${({theme}) => theme.colors.blue};
+  font-family: ${({theme}) => theme.fonts.regular};
 `;
 export const IconButton = styled(TouchableOpacity)`
   width: 26px;

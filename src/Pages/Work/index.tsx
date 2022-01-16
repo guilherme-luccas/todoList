@@ -116,7 +116,6 @@ export default function Work() {
           {list?.map(item => {
             return <ItemTodo key={item.id} data={item} />;
           })}
-          {/* <ItemTodo /> */}
         </ContainerApp>
       </BackgroundContainerApp>
 

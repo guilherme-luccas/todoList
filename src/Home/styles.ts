@@ -22,14 +22,15 @@ export const NameContainer = styled.View`
 
 export const UserName = styled.Text`
   font-size: 20px;
-  font-weight: bold;
   line-height: 24px;
-  color: white;
+  color: ${({theme}) => theme.colors.text1};
+  font-family: ${({theme}) => theme.fonts.bold};
 `;
 export const UserJob = styled.Text`
   font-size: 16px;
   line-height: 20px;
   color: ${({theme}) => theme.colors.text2};
+  font-family: ${({theme}) => theme.fonts.regular};
 `;
 export const BackgroundContainerApp = styled.View`
   background-color: ${({theme}) => theme.colors.orange};
@@ -45,9 +46,9 @@ export const ContainerApp = styled.View`
 `;
 export const TitlePage = styled.Text`
   font-size: 20px;
-  font-weight: bold;
   line-height: 24px;
   color: ${({theme}) => theme.colors.orange};
+  font-family: ${({theme}) => theme.fonts.bold};
 `;
 export const ContainerProjects = styled.View`
   display: flex;
@@ -95,6 +96,7 @@ export const FolderTitle = styled.Text`
   line-height: 24px;
   color: ${({theme}) => theme.colors.text1};
   margin-left: 12px;
+  font-family: ${({theme}) => theme.fonts.regular};
 `;
 export const ContainerTasksFolder = styled.View`
   width: 85%;
@@ -109,12 +111,14 @@ export const TaksCompleted = styled.Text`
   font-size: 17px;
   line-height: 22px;
   color: ${({theme}) => theme.colors.text1};
-  font-weight: bold;
+  font-family: ${({theme}) => theme.fonts.bold};
 `;
 export const TaksTotal = styled.Text`
   font-size: 15px;
   line-height: 22px;
   color: ${({theme}) => theme.colors.text1};
   opacity: 0.7;
-  font-weight: bold;
+  font-family: ${({theme}) => theme.fonts.regular};
 `;
+
+export const TaskCompletedIcon = styled.Image``;

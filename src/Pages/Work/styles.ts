@@ -36,15 +36,16 @@ export const ContainerTitleAndTasks = styled.View`
   display: flex;
 `;
 export const Title = styled.Text`
-  font-weight: bold;
   font-size: 32px;
   line-height: 39px;
   color: ${({theme}) => theme.colors.text1};
+  font-family: ${({theme}) => theme.fonts.bold};
 `;
 export const TaskInformation = styled.Text`
   font-size: 14px;
   line-height: 17px;
   color: ${({theme}) => theme.colors.text2};
+  font-family: ${({theme}) => theme.fonts.regular};
 `;
 
 export const AddButton = styled(TouchableOpacity)`
@@ -88,6 +89,7 @@ export const InputContainerTitle = styled.Text`
   line-height: 17px;
   color: ${({theme}) => theme.colors.text3};
   margin-top: 45px;
+  font-family: ${({theme}) => theme.fonts.regular};
 `;
 export const InputContainerInput = styled(TextInput)`
   width: 100%;
@@ -95,6 +97,7 @@ export const InputContainerInput = styled(TextInput)`
   background: ${({theme}) => theme.colors.text2};
   border-radius: 10px;
   margin-top: 10px;
+  font-family: ${({theme}) => theme.fonts.regular};
 `;
 export const AddTaskButton = styled(TouchableOpacity)`
   height: 50px;
@@ -110,5 +113,5 @@ export const AddTaskButtonTitle = styled.Text`
   font-size: 16px;
   line-height: 20px;
   color: ${({theme}) => theme.colors.text1};
-  font-weight: bold;
+  font-family: ${({theme}) => theme.fonts.bold};
 `;

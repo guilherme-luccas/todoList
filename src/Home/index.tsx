@@ -5,6 +5,7 @@ import computer from '../assets/icons/DesktopTower.png';
 import cap from '../assets/icons/GraduationCap.png';
 import cart from '../assets/icons/ShoppingCart.png';
 import firstAid from '../assets/icons/FirstAidKit.png';
+import iconCompleted from '../assets/icons/CircleWavyCheck.png';
 
 import {
   Header,
@@ -25,10 +26,10 @@ import {
   ContainerTasksFolder,
   TaksCompleted,
   TaksTotal,
+  TaskCompletedIcon,
 } from './styles';
 import {StatusBar} from 'react-native';
 import database from '@react-native-firebase/database';
-import {MonitorContext} from '../context';
 
 interface ListProps {
   id: string;
@@ -94,8 +95,14 @@ export default function Home({navigation}) {
               <IconFolder source={computer} />
               <FolderTitle>Trabalho</FolderTitle>
               <ContainerTasksFolder>
-                <TaksCompleted>{FilterByIsCompleted(list)}/</TaksCompleted>
-                <TaksTotal>{list.length}</TaksTotal>
+                {FilterByIsCompleted(list) === list.length ? (
+                  <TaskCompletedIcon source={iconCompleted} />
+                ) : (
+                  <>
+                    <TaksCompleted>{FilterByIsCompleted(list)}/</TaksCompleted>
+                    <TaksTotal>{list.length}</TaksTotal>
+                  </>
+                )}
               </ContainerTasksFolder>
             </ProjectWork>
             <ProjectCollege>
