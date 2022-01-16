@@ -54,8 +54,6 @@ export default function Home({navigation}) {
 
   useEffect(() => {
     async function getList() {
-      console.log(' entrou');
-
       try {
         const listFromFirebase = await database()
           .ref('/Trabalho')

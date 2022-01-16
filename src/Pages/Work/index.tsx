@@ -85,8 +85,6 @@ export default function Work() {
     FilterByIsCompleted(list);
   }, [monitor]);
 
-  // console.log(list);
-
   function FilterByIsCompleted(item: any) {
     const tasks = item.filter((item: any) => {
       return item.isCompleted === true;
