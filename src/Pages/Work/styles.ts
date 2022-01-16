@@ -85,7 +85,7 @@ export const InputContainer = styled.View`
   width: 100%;
 `;
 export const InputContainerTitle = styled.Text`
-  font-size: 14px;
+  font-size: 17px;
   line-height: 17px;
   color: ${({theme}) => theme.colors.text3};
   margin-top: 45px;
