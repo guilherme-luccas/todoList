@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {useFocusEffect} from '@react-navigation/native';
+import {useFocusEffect, useIsFocused} from '@react-navigation/native';
 import avatar from '../assets/images/avatar.png';
 import computer from '../assets/icons/DesktopTower.png';
 import cap from '../assets/icons/GraduationCap.png';
@@ -43,6 +43,7 @@ interface ValueProps {
 
 export default function Home({navigation}) {
   const [list, setList] = useState<Array<ListProps>>([]);
+  const isFocused = useIsFocused();
 
   function FilterByIsCompleted(item: any) {
     const tasks = item.filter((item: any) => {
@@ -51,7 +52,7 @@ export default function Home({navigation}) {
     return tasks.length;
   }
 
-  useFocusEffect(() => {
+  useEffect(() => {
     async function getList() {
       console.log(' entrou');
 
@@ -75,7 +76,7 @@ export default function Home({navigation}) {
       } catch (err) {}
     }
     getList();
-  });
+  }, [isFocused]);
 
   return (
     <>
