@@ -28,7 +28,7 @@ import {
   TaksTotal,
   TaskCompletedIcon,
 } from './styles';
-import {StatusBar} from 'react-native';
+import {ActivityIndicator, StatusBar} from 'react-native';
 import database from '@react-native-firebase/database';
 
 interface ListProps {
@@ -43,6 +43,9 @@ interface ValueProps {
 
 export default function Home({navigation}) {
   const [list, setList] = useState<Array<ListProps>>([]);
+  const [taskIndicator, setTaskIndicator] = useState<number>(0);
+
+  const [loading, setLoading] = useState<boolean>(false);
   const isFocused = useIsFocused();
 
   function FilterByIsCompleted(item: any) {
@@ -52,8 +55,19 @@ export default function Home({navigation}) {
     return tasks.length;
   }
 
+  function Tasks() {
+    return taskIndicator === list.length ? (
+      <TaskCompletedIcon source={iconCompleted} />
+    ) : (
+      <>
+        <TaksCompleted>{FilterByIsCompleted(list)}/</TaksCompleted>
+        <TaksTotal>{list.length}</TaksTotal>
+      </>
+    );
+  }
   useEffect(() => {
     async function getList() {
+      setLoading(true);
       try {
         const listFromFirebase = await database()
           .ref('/Trabalho')
@@ -69,10 +83,16 @@ export default function Home({navigation}) {
               };
             });
           });
+        const test = FilterByIsCompleted(listFromFirebase);
+        setTaskIndicator(test);
 
         setList(listFromFirebase);
-      } catch (err) {}
+        setLoading(false);
+      } catch (err) {
+        setLoading(false);
+      }
     }
+
     getList();
   }, [isFocused]);
 
@@ -94,17 +114,10 @@ export default function Home({navigation}) {
               <IconFolder source={computer} />
               <FolderTitle>Trabalho</FolderTitle>
               <ContainerTasksFolder>
-                {FilterByIsCompleted(list) === list.length ? (
-                  <TaskCompletedIcon source={iconCompleted} />
-                ) : (
-                  <>
-                    <TaksCompleted>{FilterByIsCompleted(list)}/</TaksCompleted>
-                    <TaksTotal>{list.length}</TaksTotal>
-                  </>
-                )}
+                {loading ? <ActivityIndicator /> : <Tasks />}
               </ContainerTasksFolder>
             </ProjectWork>
-            <ProjectCollege>
+            <ProjectCollege onPress={() => navigation.navigate('College')}>
               <IconFolder source={cap} />
               <FolderTitle>Faculdade</FolderTitle>
               <ContainerTasksFolder>

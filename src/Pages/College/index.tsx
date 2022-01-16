@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {Modal, StatusBar, ActivityIndicator, ScrollView} from 'react-native';
 
-import computer from '../../assets/icons/DesktopTower.png';
+import GraduationCap from '../../assets/icons/GraduationCap.png';
 import addButton from '../../assets/icons/AddButtonBlue.png';
 import Close from '../../assets/icons/Close.png';
 
@@ -31,7 +31,7 @@ import ItemTodo from './components/itemTodo';
 import database from '@react-native-firebase/database';
 import {MonitorContext} from '../../context';
 
-const newReference = database().ref('/Trabalho');
+const newReference = database().ref('/Faculdade');
 interface ListProps {
   id: string;
   isCompleted: boolean;
@@ -41,7 +41,7 @@ interface ValueProps {
   isDone: boolean;
   task: string;
 }
-export default function Work() {
+export default function College() {
   const {monitor, setMonitor} = useContext(MonitorContext);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
@@ -71,7 +71,7 @@ export default function Work() {
     async function getList() {
       try {
         const listFromFirebase = await database()
-          .ref('/Trabalho')
+          .ref('/Faculdade')
           .once('value')
           .then(snapshot => {
             const tasks: ValueProps = snapshot.val();
@@ -103,10 +103,10 @@ export default function Work() {
     <>
       <StatusBar hidden />
       <Header>
-        <IconFolder source={computer} />
+        <IconFolder source={GraduationCap} />
         <TitleHeaderWork>
           <ContainerTitleAndTasks>
-            <Title>Trabalho</Title>
+            <Title>Faculdade</Title>
             <TaskInformation>
               {loading ? (
                 <ActivityIndicator />
