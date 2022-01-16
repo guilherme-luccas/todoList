@@ -29,7 +29,6 @@ import {
 import ItemTodo from './components/itemTodo';
 
 import database from '@react-native-firebase/database';
-import {useNavigation} from '@react-navigation/native';
 import {MonitorContext} from '../../context';
 
 const newReference = database().ref('/Trabalho');
@@ -83,9 +82,17 @@ export default function Work() {
       } catch (err) {}
     }
     getList();
+    FilterByIsCompleted(list);
   }, [monitor]);
 
-  console.log(list);
+  // console.log(list);
+
+  function FilterByIsCompleted(item: any) {
+    const tasks = item.filter((item: any) => {
+      return item.isCompleted === true;
+    });
+    return tasks.length;
+  }
 
   return (
     <>
@@ -95,7 +102,9 @@ export default function Work() {
         <TitleHeaderWork>
           <ContainerTitleAndTasks>
             <Title>Trabalho</Title>
-            <TaskInformation>30/40 de tarefas</TaskInformation>
+            <TaskInformation>
+              {FilterByIsCompleted(list)}/{list.length} de tarefas
+            </TaskInformation>
           </ContainerTitleAndTasks>
           <AddButton onPress={() => setModalVisible(true)}>
             <IconAdd source={addButton} />

@@ -26,7 +26,6 @@ import {
   ModalView,
 } from '../../styles';
 import Close from '../../../../assets/icons/Close.png';
-import {useNavigation} from '@react-navigation/native';
 import {MonitorContext} from '../../../../context';
 
 export default function Itemtodo({data}: any) {
@@ -47,6 +46,7 @@ export default function Itemtodo({data}: any) {
         isDone: !toggleCheckBox,
       })
       .then(() => console.log('Data updated.'));
+    setMonitor(!monitor);
   }
 
   function handleSubmit() {

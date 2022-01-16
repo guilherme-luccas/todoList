@@ -5,7 +5,7 @@ export const Header = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
-  background-color: #f28119;
+  background-color: ${({theme}) => theme.colors.orange};
   padding-top: 40px;
   padding-left: 20px;
   padding-bottom: 32px;
@@ -29,10 +29,10 @@ export const UserName = styled.Text`
 export const UserJob = styled.Text`
   font-size: 16px;
   line-height: 20px;
-  color: #ffffffb0;
+  color: ${({theme}) => theme.colors.text2};
 `;
 export const BackgroundContainerApp = styled.View`
-  background-color: #f28119;
+  background-color: ${({theme}) => theme.colors.orange};
   flex: 1;
 `;
 export const ContainerApp = styled.View`
@@ -47,7 +47,7 @@ export const TitlePage = styled.Text`
   font-size: 20px;
   font-weight: bold;
   line-height: 24px;
-  color: #f28119;
+  color: ${({theme}) => theme.colors.orange};
 `;
 export const ContainerProjects = styled.View`
   display: flex;
@@ -57,28 +57,28 @@ export const ContainerProjects = styled.View`
   padding-top: 32px;
 `;
 export const ProjectWork = styled(TouchableOpacity)`
-  background-color: #4bb1f8;
+  background-color: ${({theme}) => theme.colors.blue};
   height: 130px;
   width: 160px;
   border-radius: 20px;
   margin-bottom: 15px;
 `;
 export const ProjectCollege = styled(TouchableOpacity)`
-  background-color: #53db89;
+  background-color: ${({theme}) => theme.colors.green};
   height: 130px;
   width: 160px;
   border-radius: 20px;
   margin-bottom: 15px;
 `;
 export const ProjectMarket = styled(TouchableOpacity)`
-  background-color: #f98a4b;
+  background-color: ${({theme}) => theme.colors.orange};
   height: 130px;
   width: 160px;
   border-radius: 20px;
   margin-bottom: 15px;
 `;
 export const ProjectPharmacy = styled(TouchableOpacity)`
-  background-color: #ff5e5e;
+  background-color: ${({theme}) => theme.colors.red};
   height: 130px;
   width: 160px;
   border-radius: 20px;
@@ -93,7 +93,7 @@ export const IconFolder = styled.Image`
 export const FolderTitle = styled.Text`
   font-size: 20px;
   line-height: 24px;
-  color: #ffffff;
+  color: ${({theme}) => theme.colors.text1};
   margin-left: 12px;
 `;
 export const ContainerTasksFolder = styled.View`
@@ -108,13 +108,13 @@ export const ContainerTasksFolder = styled.View`
 export const TaksCompleted = styled.Text`
   font-size: 17px;
   line-height: 22px;
-  color: #ffffff;
+  color: ${({theme}) => theme.colors.text1};
   font-weight: bold;
 `;
 export const TaksTotal = styled.Text`
   font-size: 15px;
   line-height: 22px;
-  color: #ffffff;
+  color: ${({theme}) => theme.colors.text1};
   opacity: 0.7;
   font-weight: bold;
 `;

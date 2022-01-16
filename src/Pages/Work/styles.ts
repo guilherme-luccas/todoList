@@ -4,7 +4,7 @@ import styled from 'styled-components/native';
 export const Header = styled.View`
   display: flex;
   flex-direction: column;
-  background-color: #4bb1f8;
+  background-color: ${({theme}) => theme.colors.blue};
   padding-top: 19px;
   padding-left: 20px;
   padding-right: 20px;
@@ -12,11 +12,11 @@ export const Header = styled.View`
 `;
 
 export const BackgroundContainerApp = styled.View`
-  background-color: #4bb1f8;
+  background-color: ${({theme}) => theme.colors.blue};
   flex: 1;
 `;
 export const ContainerApp = styled.View`
-  background-color: white;
+  background-color: ${({theme}) => theme.colors.white};
   flex: 1;
   border-top-left-radius: 70px;
   padding-top: 48px;
@@ -39,12 +39,12 @@ export const Title = styled.Text`
   font-weight: bold;
   font-size: 32px;
   line-height: 39px;
-  color: #ffffff;
+  color: ${({theme}) => theme.colors.text1};
 `;
 export const TaskInformation = styled.Text`
   font-size: 14px;
   line-height: 17px;
-  color: rgba(255, 255, 255, 0.7);
+  color: ${({theme}) => theme.colors.text2};
 `;
 
 export const AddButton = styled(TouchableOpacity)`
@@ -65,7 +65,7 @@ export const ModalView = styled.View`
   height: 239px;
   width: 90%;
   border-radius: 20px;
-  background-color: #fff;
+  background-color: ${({theme}) => theme.colors.white};
   padding: 15px;
   position: relative;
 `;
@@ -86,21 +86,21 @@ export const InputContainer = styled.View`
 export const InputContainerTitle = styled.Text`
   font-size: 14px;
   line-height: 17px;
-  color: #121212;
+  color: ${({theme}) => theme.colors.text3};
   margin-top: 45px;
 `;
 export const InputContainerInput = styled(TextInput)`
   width: 100%;
   height: 50px;
-  background: #efefef;
+  background: ${({theme}) => theme.colors.text2};
   border-radius: 10px;
   margin-top: 10px;
 `;
 export const AddTaskButton = styled(TouchableOpacity)`
   height: 50px;
   width: 100%;
-  color: #fff;
-  background-color: #f28119;
+  color: ${({theme}) => theme.colors.text1};
+  background-color: ${({theme}) => theme.colors.orange};
   margin-top: 24px;
   border-radius: 30px;
   justify-content: center;
@@ -109,6 +109,6 @@ export const AddTaskButton = styled(TouchableOpacity)`
 export const AddTaskButtonTitle = styled.Text`
   font-size: 16px;
   line-height: 20px;
-  color: #fff;
+  color: ${({theme}) => theme.colors.text1};
   font-weight: bold;
 `;

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import {useFocusEffect} from '@react-navigation/native';
 import avatar from '../assets/images/avatar.png';
 import computer from '../assets/icons/DesktopTower.png';
 import cap from '../assets/icons/GraduationCap.png';
@@ -26,8 +27,55 @@ import {
   TaksTotal,
 } from './styles';
 import {StatusBar} from 'react-native';
+import database from '@react-native-firebase/database';
+import {MonitorContext} from '../context';
+
+interface ListProps {
+  id: string;
+  isCompleted: boolean;
+  task: string;
+}
+interface ValueProps {
+  isDone: boolean;
+  task: string;
+}
 
 export default function Home({navigation}) {
+  const [list, setList] = useState<Array<ListProps>>([]);
+
+  function FilterByIsCompleted(item: any) {
+    const tasks = item.filter((item: any) => {
+      return item.isCompleted === true;
+    });
+    return tasks.length;
+  }
+
+  useFocusEffect(() => {
+    async function getList() {
+      console.log(' entrou');
+
+      try {
+        const listFromFirebase = await database()
+          .ref('/Trabalho')
+          .once('value')
+          .then(snapshot => {
+            const tasks: ValueProps = snapshot.val();
+
+            return Object.entries(tasks).map(([key, value]) => {
+              return {
+                id: key,
+                isCompleted: value.isDone,
+                task: value.task,
+              };
+            });
+          });
+
+        setList(listFromFirebase);
+      } catch (err) {}
+    }
+    getList();
+  });
+
   return (
     <>
       <StatusBar hidden />
@@ -46,8 +94,8 @@ export default function Home({navigation}) {
               <IconFolder source={computer} />
               <FolderTitle>Trabalho</FolderTitle>
               <ContainerTasksFolder>
-                <TaksCompleted>02/</TaksCompleted>
-                <TaksTotal>10</TaksTotal>
+                <TaksCompleted>{FilterByIsCompleted(list)}/</TaksCompleted>
+                <TaksTotal>{list.length}</TaksTotal>
               </ContainerTasksFolder>
             </ProjectWork>
             <ProjectCollege>
