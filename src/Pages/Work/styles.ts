@@ -94,7 +94,7 @@ export const InputContainerTitle = styled.Text`
 export const InputContainerInput = styled(TextInput)`
   width: 100%;
   height: 50px;
-  background: ${({theme}) => theme.colors.text2};
+  background: ${({theme}) => theme.colors.gray};
   border-radius: 10px;
   margin-top: 10px;
   font-family: ${({theme}) => theme.fonts.regular};
