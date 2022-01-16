@@ -3,7 +3,6 @@ import {TouchableOpacity} from 'react-native';
 
 export const ItemTodo = styled.View`
   width: 100%;
-  height: 61px;
   padding: 15px;
   border: 1px solid ${({theme}) => theme.colors.borderColor1};
   border-radius: 20px;
@@ -28,6 +27,7 @@ export const ContainerEditAndDelete = styled.View`
   width: 20%;
 `;
 export const TodoName = styled.Text`
+  width: 220px;
   font-size: 16px;
   line-height: 18px;
   color: ${({theme}) => theme.colors.blue};
