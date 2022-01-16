@@ -77,10 +77,14 @@ export default function Itemtodo({data}: any) {
           <TodoName>{data.task}</TodoName>
         </ContainerCheckboxAndTasks>
         <ContainerEditAndDelete>
-          <IconButton onPress={() => setModalVisibleEdit(true)}>
+          <IconButton
+            disabled={data.isCompleted}
+            onPress={() => setModalVisibleEdit(true)}>
             <Icon source={pencil} />
           </IconButton>
-          <IconButton onPress={() => handleDelete()}>
+          <IconButton
+            disabled={data.isCompleted}
+            onPress={() => handleDelete()}>
             <Icon source={trash} />
           </IconButton>
         </ContainerEditAndDelete>
@@ -100,6 +104,7 @@ export default function Itemtodo({data}: any) {
             <InputContainer>
               <InputContainerTitle>Tarefa:</InputContainerTitle>
               <InputContainerInput
+                placeholderTextColor={'black'}
                 placeholder="Atualize o nome da sua tarefa"
                 onChangeText={text => onChangeText(text)}
               />
