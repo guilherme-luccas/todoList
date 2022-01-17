@@ -43,11 +43,9 @@ export default function Itemtodo({data}: any) {
 
   function handleSubmitCheckbox(value: boolean) {
     setToggleCheckBox(value);
-    newReference
-      .update({
-        isDone: !toggleCheckBox,
-      })
-      .then(() => console.log('Data updated.'));
+    newReference.update({
+      isDone: !toggleCheckBox,
+    });
     setMonitor(!monitor);
   }
 
@@ -56,11 +54,9 @@ export default function Itemtodo({data}: any) {
       setErrorSubmit(true);
       return;
     }
-    newReference
-      .update({
-        task: name,
-      })
-      .then(() => console.log('Data updated.'));
+    newReference.update({
+      task: name,
+    });
     setModalVisibleEdit(!modalVisibleEdit);
     setMonitor(!monitor);
     onChangeText('');

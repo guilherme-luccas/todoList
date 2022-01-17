@@ -55,13 +55,10 @@ export default function College() {
       setErrorSubmit(true);
       return;
     }
-    newReference
-      .push()
-      .set({
-        task: name,
-        isDone: false,
-      })
-      .then(() => console.log('Data updated.'));
+    newReference.push().set({
+      task: name,
+      isDone: false,
+    });
     setModalVisible(!modalVisible);
     setMonitor(!monitor);
     onChangeText('');
@@ -109,7 +106,6 @@ export default function College() {
   useEffect(() => {
     setLoading(true);
   }, []);
-  console.log(name);
 
   return (
     <>

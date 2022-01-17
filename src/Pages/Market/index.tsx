@@ -55,13 +55,10 @@ export default function Market() {
       setErrorSubmit(true);
       return;
     }
-    newReference
-      .push()
-      .set({
-        task: name,
-        isDone: false,
-      })
-      .then(() => console.log('Data updated.'));
+    newReference.push().set({
+      task: name,
+      isDone: false,
+    });
     setModalVisible(!modalVisible);
     setMonitor(!monitor);
     onChangeText('');
