@@ -25,6 +25,7 @@ import {
   InputContainerInput,
   AddTaskButton,
   AddTaskButtonTitle,
+  InputContainerError,
 } from './styles';
 import ItemTodo from './components/itemTodo';
 
@@ -47,8 +48,13 @@ export default function College() {
   const [loading, setLoading] = useState<boolean>(false);
   const [name, onChangeText] = useState('');
   const [list, setList] = useState<Array<ListProps>>([]);
+  const [errorSubmit, setErrorSubmit] = useState<boolean>(false);
 
   function handleSubmit() {
+    if (!name) {
+      setErrorSubmit(true);
+      return;
+    }
     newReference
       .push()
       .set({
@@ -58,6 +64,8 @@ export default function College() {
       .then(() => console.log('Data updated.'));
     setModalVisible(!modalVisible);
     setMonitor(!monitor);
+    onChangeText('');
+    setErrorSubmit(false);
   }
 
   function FilterByIsCompleted(item: any) {
@@ -101,6 +109,7 @@ export default function College() {
   useEffect(() => {
     setLoading(true);
   }, []);
+  console.log(name);
 
   return (
     <>
@@ -159,6 +168,12 @@ export default function College() {
                 placeholder="Digite sua tarefa"
                 onChangeText={text => onChangeText(text)}
               />
+              {errorSubmit ? (
+                <InputContainerError>Campo Obrigatório</InputContainerError>
+              ) : (
+                <></>
+              )}
+
               <AddTaskButton onPress={handleSubmit}>
                 <AddTaskButtonTitle>Adicionar</AddTaskButtonTitle>
               </AddTaskButton>

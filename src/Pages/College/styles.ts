@@ -115,3 +115,10 @@ export const AddTaskButtonTitle = styled.Text`
   color: ${({theme}) => theme.colors.text1};
   font-family: ${({theme}) => theme.fonts.bold};
 `;
+export const InputContainerError = styled.Text`
+  margin-top: 4px;
+  font-size: 12px;
+  line-height: 13px;
+  color: ${({theme}) => theme.colors.red};
+  font-family: ${({theme}) => theme.fonts.regular};
+`;
