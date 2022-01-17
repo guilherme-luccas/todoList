@@ -113,7 +113,7 @@ export default function Itemtodo({data}: any) {
               <InputContainerTitle>Tarefa:</InputContainerTitle>
               <InputContainerInput
                 placeholderTextColor="black"
-                placeholder="Atualize o nome da sua tarefa"
+                placeholder="Digite um novo nome para sua tarefa"
                 onChangeText={text => onChangeText(text)}
               />
               {errorSubmit ? (
