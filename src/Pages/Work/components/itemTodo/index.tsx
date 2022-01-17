@@ -76,18 +76,22 @@ export default function Itemtodo({data}: any) {
           />
           <TodoName>{data.task}</TodoName>
         </ContainerCheckboxAndTasks>
-        <ContainerEditAndDelete>
-          <IconButton
-            disabled={data.isCompleted}
-            onPress={() => setModalVisibleEdit(true)}>
-            <Icon source={pencil} />
-          </IconButton>
-          <IconButton
-            disabled={data.isCompleted}
-            onPress={() => handleDelete()}>
-            <Icon source={trash} />
-          </IconButton>
-        </ContainerEditAndDelete>
+        {toggleCheckBox ? (
+          <></>
+        ) : (
+          <ContainerEditAndDelete>
+            <IconButton
+              disabled={data.isCompleted}
+              onPress={() => setModalVisibleEdit(true)}>
+              <Icon source={pencil} />
+            </IconButton>
+            <IconButton
+              disabled={data.isCompleted}
+              onPress={() => handleDelete()}>
+              <Icon source={trash} />
+            </IconButton>
+          </ContainerEditAndDelete>
+        )}
       </ItemTodo>
       <Modal
         animationType="slide"

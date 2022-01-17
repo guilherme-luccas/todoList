@@ -31,7 +31,7 @@ import {MonitorContext} from '../../../../context';
 export default function Itemtodo({data}: any) {
   const {monitor, setMonitor} = useContext(MonitorContext);
 
-  const newReference = database().ref(`/Faculdade/${data.id}`);
+  const newReference = database().ref(`/Mercado/${data.id}`);
 
   const [name, onChangeText] = useState(`${data.task}`);
   const [modalVisibleEdit, setModalVisibleEdit] = useState(false);
@@ -60,7 +60,7 @@ export default function Itemtodo({data}: any) {
   }
 
   async function handleDelete() {
-    await database().ref(`/Faculdade/${data.id}`).set(null);
+    await database().ref(`/Mercado/${data.id}`).set(null);
     setMonitor(!monitor);
   }
 

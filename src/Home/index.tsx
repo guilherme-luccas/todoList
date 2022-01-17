@@ -42,8 +42,15 @@ interface ValueProps {
 }
 
 export default function Home({navigation}) {
-  const [list, setList] = useState<Array<ListProps>>([]);
-  const [taskIndicator, setTaskIndicator] = useState<number>(0);
+  const [listWork, setListWork] = useState<Array<ListProps>>([]);
+  const [listCollege, setListCollege] = useState<Array<ListProps>>([]);
+  const [listMarket, setListMarket] = useState<Array<ListProps>>([]);
+  const [listPharmacy, setListPharmacy] = useState<Array<ListProps>>([]);
+
+  const [taskIndicatorWork, setTaskIndicatorWork] = useState<number>(0);
+  const [taskIndicatorCollege, setTaskIndicatorCollege] = useState<number>(0);
+  const [taskIndicatorMarket, setTaskIndicatorMarket] = useState<number>(0);
+  const [taskIndicatorPharmacy, setTaskIndicatorPharmacy] = useState<number>(0);
 
   const [loading, setLoading] = useState<boolean>(false);
   const isFocused = useIsFocused();
@@ -55,13 +62,44 @@ export default function Home({navigation}) {
     return tasks.length;
   }
 
-  function Tasks() {
-    return taskIndicator === list.length ? (
+  function TasksWork() {
+    return taskIndicatorWork === listWork.length ? (
       <TaskCompletedIcon source={iconCompleted} />
     ) : (
       <>
-        <TaksCompleted>{FilterByIsCompleted(list)}/</TaksCompleted>
-        <TaksTotal>{list.length}</TaksTotal>
+        <TaksCompleted>{FilterByIsCompleted(listWork)}/</TaksCompleted>
+        <TaksTotal>{listWork.length}</TaksTotal>
+      </>
+    );
+  }
+
+  function TasksCollege() {
+    return taskIndicatorCollege === listCollege.length ? (
+      <TaskCompletedIcon source={iconCompleted} />
+    ) : (
+      <>
+        <TaksCompleted>{FilterByIsCompleted(listCollege)}/</TaksCompleted>
+        <TaksTotal>{listCollege.length}</TaksTotal>
+      </>
+    );
+  }
+  function TasksMarket() {
+    return taskIndicatorMarket === listMarket.length ? (
+      <TaskCompletedIcon source={iconCompleted} />
+    ) : (
+      <>
+        <TaksCompleted>{FilterByIsCompleted(listMarket)}/</TaksCompleted>
+        <TaksTotal>{listMarket.length}</TaksTotal>
+      </>
+    );
+  }
+  function TasksPharmacy() {
+    return taskIndicatorPharmacy === listPharmacy.length ? (
+      <TaskCompletedIcon source={iconCompleted} />
+    ) : (
+      <>
+        <TaksCompleted>{FilterByIsCompleted(listPharmacy)}/</TaksCompleted>
+        <TaksTotal>{listPharmacy.length}</TaksTotal>
       </>
     );
   }
@@ -69,7 +107,7 @@ export default function Home({navigation}) {
     async function getList() {
       setLoading(true);
       try {
-        const listFromFirebase = await database()
+        const listFromFirebaseWork = await database()
           .ref('/Trabalho')
           .once('value')
           .then(snapshot => {
@@ -83,10 +121,70 @@ export default function Home({navigation}) {
               };
             });
           });
-        const test = FilterByIsCompleted(listFromFirebase);
-        setTaskIndicator(test);
 
-        setList(listFromFirebase);
+        const listFromFirebaseCollege = await database()
+          .ref('/Faculdade')
+          .once('value')
+          .then(snapshot => {
+            const tasks: ValueProps = snapshot.val();
+
+            return Object.entries(tasks).map(([key, value]) => {
+              return {
+                id: key,
+                isCompleted: value.isDone,
+                task: value.task,
+              };
+            });
+          });
+        const listFromFirebaseMarket = await database()
+          .ref('/Mercado')
+          .once('value')
+          .then(snapshot => {
+            const tasks: ValueProps = snapshot.val();
+
+            return Object.entries(tasks).map(([key, value]) => {
+              return {
+                id: key,
+                isCompleted: value.isDone,
+                task: value.task,
+              };
+            });
+          });
+        const listFromFirebasePharmacy = await database()
+          .ref('/Farmacia')
+          .once('value')
+          .then(snapshot => {
+            const tasks: ValueProps = snapshot.val();
+
+            return Object.entries(tasks).map(([key, value]) => {
+              return {
+                id: key,
+                isCompleted: value.isDone,
+                task: value.task,
+              };
+            });
+          });
+
+        const FilteredTasksWork = FilterByIsCompleted(listFromFirebaseWork);
+        const FilteredTasksCollege = FilterByIsCompleted(
+          listFromFirebaseCollege,
+        );
+        const FilteredTasksMarket = FilterByIsCompleted(listFromFirebaseMarket);
+        const FilteredTasksPharmacy = FilterByIsCompleted(
+          listFromFirebasePharmacy,
+        );
+        setListPharmacy(listFromFirebasePharmacy);
+        setTaskIndicatorPharmacy(FilteredTasksPharmacy);
+
+        setListMarket(listFromFirebaseMarket);
+        setTaskIndicatorMarket(FilteredTasksMarket);
+
+        setListCollege(listFromFirebaseCollege);
+        setTaskIndicatorCollege(FilteredTasksCollege);
+
+        setListWork(listFromFirebaseWork);
+        setTaskIndicatorWork(FilteredTasksWork);
+
         setLoading(false);
       } catch (err) {
         setLoading(false);
@@ -114,31 +212,28 @@ export default function Home({navigation}) {
               <IconFolder source={computer} />
               <FolderTitle>Trabalho</FolderTitle>
               <ContainerTasksFolder>
-                {loading ? <ActivityIndicator /> : <Tasks />}
+                {loading ? <ActivityIndicator /> : <TasksWork />}
               </ContainerTasksFolder>
             </ProjectWork>
             <ProjectCollege onPress={() => navigation.navigate('College')}>
               <IconFolder source={cap} />
               <FolderTitle>Faculdade</FolderTitle>
               <ContainerTasksFolder>
-                <TaksCompleted>02/</TaksCompleted>
-                <TaksTotal>05</TaksTotal>
+                {loading ? <ActivityIndicator /> : <TasksCollege />}
               </ContainerTasksFolder>
             </ProjectCollege>
-            <ProjectMarket>
+            <ProjectMarket onPress={() => navigation.navigate('Market')}>
               <IconFolder source={cart} />
               <FolderTitle>Mercado</FolderTitle>
               <ContainerTasksFolder>
-                <TaksCompleted>02/</TaksCompleted>
-                <TaksTotal>30</TaksTotal>
+                {loading ? <ActivityIndicator /> : <TasksMarket />}
               </ContainerTasksFolder>
             </ProjectMarket>
-            <ProjectPharmacy>
+            <ProjectPharmacy onPress={() => navigation.navigate('Pharmacy')}>
               <IconFolder source={firstAid} />
               <FolderTitle>Remédios</FolderTitle>
               <ContainerTasksFolder>
-                <TaksCompleted>02/</TaksCompleted>
-                <TaksTotal>02</TaksTotal>
+                {loading ? <ActivityIndicator /> : <TasksPharmacy />}
               </ContainerTasksFolder>
             </ProjectPharmacy>
           </ContainerProjects>
