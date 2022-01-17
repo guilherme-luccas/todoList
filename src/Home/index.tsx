@@ -112,6 +112,9 @@ export default function Home({navigation}) {
           .once('value')
           .then(snapshot => {
             const tasks: ValueProps = snapshot.val();
+            if (!tasks) {
+              return [];
+            }
 
             return Object.entries(tasks).map(([key, value]) => {
               return {
@@ -127,6 +130,9 @@ export default function Home({navigation}) {
           .once('value')
           .then(snapshot => {
             const tasks: ValueProps = snapshot.val();
+            if (!tasks) {
+              return [];
+            }
 
             return Object.entries(tasks).map(([key, value]) => {
               return {
@@ -141,6 +147,9 @@ export default function Home({navigation}) {
           .once('value')
           .then(snapshot => {
             const tasks: ValueProps = snapshot.val();
+            if (!tasks) {
+              return [];
+            }
 
             return Object.entries(tasks).map(([key, value]) => {
               return {
@@ -155,6 +164,9 @@ export default function Home({navigation}) {
           .once('value')
           .then(snapshot => {
             const tasks: ValueProps = snapshot.val();
+            if (!tasks) {
+              return [];
+            }
 
             return Object.entries(tasks).map(([key, value]) => {
               return {

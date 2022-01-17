@@ -76,6 +76,9 @@ export default function Work() {
           .then(snapshot => {
             const tasks: ValueProps = snapshot.val();
 
+            if (!tasks) {
+              return [];
+            }
             return Object.entries(tasks).map(([key, value]) => {
               return {
                 id: key,
@@ -89,6 +92,7 @@ export default function Work() {
         setLoading(false);
       } catch (err) {
         setLoading(false);
+        console.log(err);
       }
     }
     getList();
@@ -98,6 +102,7 @@ export default function Work() {
   useEffect(() => {
     setLoading(true);
   }, []);
+  console.log('list', list);
 
   return (
     <>
