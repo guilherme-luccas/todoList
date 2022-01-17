@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import {Modal, StatusBar, ActivityIndicator, ScrollView} from 'react-native';
 
 import GraduationCap from '../../assets/icons/GraduationCap.png';
-import addButton from '../../assets/icons/AddButtonBlue.png';
+import addButton from '../../assets/icons/Plus.png';
 import Close from '../../assets/icons/Close.png';
 
 import {

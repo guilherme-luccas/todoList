@@ -20,6 +20,7 @@ import {
   CloseButton,
   IconClose,
   InputContainer,
+  InputContainerError,
   InputContainerInput,
   InputContainerTitle,
   ModalContainer,
@@ -38,6 +39,7 @@ export default function Itemtodo({data}: any) {
   const [toggleCheckBox, setToggleCheckBox] = useState<boolean>(
     data.isCompleted,
   );
+  const [errorSubmit, setErrorSubmit] = useState<boolean>(false);
 
   function handleSubmitCheckbox(value: boolean) {
     setToggleCheckBox(value);
@@ -50,6 +52,10 @@ export default function Itemtodo({data}: any) {
   }
 
   function handleSubmit() {
+    if (!name) {
+      setErrorSubmit(true);
+      return;
+    }
     newReference
       .update({
         task: name,
@@ -57,6 +63,8 @@ export default function Itemtodo({data}: any) {
       .then(() => console.log('Data updated.'));
     setModalVisibleEdit(!modalVisibleEdit);
     setMonitor(!monitor);
+    onChangeText('');
+    setErrorSubmit(false);
   }
 
   async function handleDelete() {
@@ -108,10 +116,16 @@ export default function Itemtodo({data}: any) {
             <InputContainer>
               <InputContainerTitle>Tarefa:</InputContainerTitle>
               <InputContainerInput
+                value={name}
                 placeholderTextColor={'black'}
                 placeholder="Atualize o nome da sua tarefa"
                 onChangeText={text => onChangeText(text)}
               />
+              {errorSubmit ? (
+                <InputContainerError>Campo Obrigatório</InputContainerError>
+              ) : (
+                <></>
+              )}
               <AddTaskButton onPress={handleSubmit}>
                 <AddTaskButtonTitle>Atualizar</AddTaskButtonTitle>
               </AddTaskButton>
