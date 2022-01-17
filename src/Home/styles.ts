@@ -27,7 +27,7 @@ export const UserName = styled.Text`
   font-family: ${({theme}) => theme.fonts.bold};
 `;
 export const UserJob = styled.Text`
-  font-size: 16px;
+  font-size: 15px;
   line-height: 20px;
   color: ${({theme}) => theme.colors.text2};
   font-family: ${({theme}) => theme.fonts.regular};

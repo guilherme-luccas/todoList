@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import {useFocusEffect, useIsFocused} from '@react-navigation/native';
-import avatar from '../assets/images/avatar.png';
+import {useIsFocused} from '@react-navigation/native';
+
+import avatar from '../assets/images/Avatar2.png';
 import computer from '../assets/icons/DesktopTower.png';
 import cap from '../assets/icons/GraduationCap.png';
 import cart from '../assets/icons/ShoppingCart.png';
@@ -228,8 +229,8 @@ export default function Home({navigation}) {
       <Header>
         <AvatarCircle source={avatar} />
         <NameContainer>
-          <UserName>Jonas B. Alves</UserName>
-          <UserJob>Desenvolvedor</UserJob>
+          <UserName>Guilherme L. Costa</UserName>
+          <UserJob>Desenvolvedor Front-End</UserJob>
         </NameContainer>
       </Header>
       <BackgroundContainerApp>
