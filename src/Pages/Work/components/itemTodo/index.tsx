@@ -34,7 +34,7 @@ export default function Itemtodo({data}: any) {
 
   const newReference = database().ref(`/Trabalho/${data.id}`);
 
-  const [name, onChangeText] = useState(`${data.task}`);
+  const [name, onChangeText] = useState('');
   const [modalVisibleEdit, setModalVisibleEdit] = useState(false);
   const [toggleCheckBox, setToggleCheckBox] = useState<boolean>(
     data.isCompleted,
@@ -116,8 +116,7 @@ export default function Itemtodo({data}: any) {
             <InputContainer>
               <InputContainerTitle>Tarefa:</InputContainerTitle>
               <InputContainerInput
-                value={name}
-                placeholderTextColor={'black'}
+                placeholderTextColor="black"
                 placeholder="Atualize o nome da sua tarefa"
                 onChangeText={text => onChangeText(text)}
               />

@@ -165,6 +165,7 @@ export default function Market() {
             <InputContainer>
               <InputContainerTitle>Tarefa:</InputContainerTitle>
               <InputContainerInput
+                placeholderTextColor="black"
                 placeholder="Digite sua tarefa"
                 onChangeText={text => onChangeText(text)}
               />
