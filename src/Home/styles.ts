@@ -63,6 +63,7 @@ export const ProjectWork = styled(TouchableOpacity)`
   width: 160px;
   border-radius: 20px;
   margin-bottom: 15px;
+  margin-right: 10px;
 `;
 export const ProjectCollege = styled(TouchableOpacity)`
   background-color: ${({theme}) => theme.colors.green};
@@ -77,6 +78,7 @@ export const ProjectMarket = styled(TouchableOpacity)`
   width: 160px;
   border-radius: 20px;
   margin-bottom: 15px;
+  margin-right: 10px;
 `;
 export const ProjectPharmacy = styled(TouchableOpacity)`
   background-color: ${({theme}) => theme.colors.red};
