@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import {TouchableOpacity} from 'react-native';
+import {ScrollView, TouchableOpacity} from 'react-native';
 
 export const Header = styled.View`
   display: flex;
@@ -36,7 +36,7 @@ export const BackgroundContainerApp = styled.View`
   background-color: ${({theme}) => theme.colors.orange};
   flex: 1;
 `;
-export const ContainerApp = styled.View`
+export const ContainerApp = styled(ScrollView)`
   background-color: white;
   flex: 1;
   border-top-left-radius: 70px;
