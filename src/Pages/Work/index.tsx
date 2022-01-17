@@ -92,7 +92,6 @@ export default function Work() {
         setLoading(false);
       } catch (err) {
         setLoading(false);
-        console.log(err);
       }
     }
     getList();
@@ -102,7 +101,6 @@ export default function Work() {
   useEffect(() => {
     setLoading(true);
   }, []);
-  console.log('list', list);
 
   return (
     <>
