@@ -98,6 +98,7 @@ export const InputContainerInput = styled(TextInput)`
   border-radius: 10px;
   margin-top: 10px;
   font-family: ${({theme}) => theme.fonts.regular};
+  color: ${({theme}) => theme.colors.text3};
 `;
 export const AddTaskButton = styled(TouchableOpacity)`
   height: 50px;
