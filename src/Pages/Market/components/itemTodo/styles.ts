@@ -27,7 +27,7 @@ export const ContainerEditAndDelete = styled.View`
   width: 20%;
 `;
 export const TodoName = styled.Text`
-  width:   width: 80%;;
+  width: 80%;
   font-size: 16px;
   line-height: 18px;
   color: ${({theme}) => theme.colors.blue};
