@@ -60,7 +60,7 @@ export const ContainerProjects = styled.View`
 export const ProjectWork = styled(TouchableOpacity)`
   background-color: ${({theme}) => theme.colors.blue};
   height: 130px;
-  width: 160px;
+  width: 145px;
   border-radius: 20px;
   margin-bottom: 15px;
   margin-right: 10px;
@@ -68,14 +68,14 @@ export const ProjectWork = styled(TouchableOpacity)`
 export const ProjectCollege = styled(TouchableOpacity)`
   background-color: ${({theme}) => theme.colors.green};
   height: 130px;
-  width: 160px;
+  width: 145px;
   border-radius: 20px;
   margin-bottom: 15px;
 `;
 export const ProjectMarket = styled(TouchableOpacity)`
   background-color: ${({theme}) => theme.colors.orange};
   height: 130px;
-  width: 160px;
+  width: 145px;
   border-radius: 20px;
   margin-bottom: 15px;
   margin-right: 10px;
@@ -83,9 +83,9 @@ export const ProjectMarket = styled(TouchableOpacity)`
 export const ProjectPharmacy = styled(TouchableOpacity)`
   background-color: ${({theme}) => theme.colors.red};
   height: 130px;
-  width: 160px;
+  width: 145px;
   border-radius: 20px;
-  margin-bottom: 15px;
+  margin-bottom: 75px;
 `;
 export const IconFolder = styled.Image`
   height: 50px;
