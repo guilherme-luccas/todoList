@@ -64,7 +64,11 @@ export default function Home({navigation}) {
 
   function TasksWork() {
     return taskIndicatorWork === listWork.length ? (
-      <TaskCompletedIcon source={iconCompleted} />
+      listWork.length > 0 ? (
+        <TaskCompletedIcon source={iconCompleted} />
+      ) : (
+        <></>
+      )
     ) : (
       <>
         <TaksCompleted>{FilterByIsCompleted(listWork)}/</TaksCompleted>
@@ -75,7 +79,11 @@ export default function Home({navigation}) {
 
   function TasksCollege() {
     return taskIndicatorCollege === listCollege.length ? (
-      <TaskCompletedIcon source={iconCompleted} />
+      listCollege.length > 0 ? (
+        <TaskCompletedIcon source={iconCompleted} />
+      ) : (
+        <></>
+      )
     ) : (
       <>
         <TaksCompleted>{FilterByIsCompleted(listCollege)}/</TaksCompleted>
@@ -85,7 +93,11 @@ export default function Home({navigation}) {
   }
   function TasksMarket() {
     return taskIndicatorMarket === listMarket.length ? (
-      <TaskCompletedIcon source={iconCompleted} />
+      listMarket.length > 0 ? (
+        <TaskCompletedIcon source={iconCompleted} />
+      ) : (
+        <></>
+      )
     ) : (
       <>
         <TaksCompleted>{FilterByIsCompleted(listMarket)}/</TaksCompleted>
@@ -95,7 +107,11 @@ export default function Home({navigation}) {
   }
   function TasksPharmacy() {
     return taskIndicatorPharmacy === listPharmacy.length ? (
-      <TaskCompletedIcon source={iconCompleted} />
+      listPharmacy.length > 0 ? (
+        <TaskCompletedIcon source={iconCompleted} />
+      ) : (
+        <></>
+      )
     ) : (
       <>
         <TaksCompleted>{FilterByIsCompleted(listPharmacy)}/</TaksCompleted>
