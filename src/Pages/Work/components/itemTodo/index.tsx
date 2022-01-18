@@ -29,12 +29,20 @@ import {
 import Close from '../../../../assets/icons/Close.png';
 import {MonitorContext} from '../../../../context';
 
-export default function Itemtodo({data}: any) {
+interface ItemTodo {
+  data: {
+    id: string;
+    isCompleted: boolean;
+    task: string;
+  };
+}
+
+export default function Itemtodo({data}: ItemTodo) {
   const {monitor, setMonitor} = useContext(MonitorContext);
 
   const newReference = database().ref(`/Trabalho/${data.id}`);
 
-  const [name, onChangeText] = useState('');
+  const [name, onChangeText] = useState(data.task);
   const [modalVisibleEdit, setModalVisibleEdit] = useState(false);
   const [toggleCheckBox, setToggleCheckBox] = useState<boolean>(
     data.isCompleted,
@@ -59,7 +67,6 @@ export default function Itemtodo({data}: any) {
     });
     setModalVisibleEdit(!modalVisibleEdit);
     setMonitor(!monitor);
-    onChangeText('');
     setErrorSubmit(false);
   }
 

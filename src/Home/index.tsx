@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {useIsFocused} from '@react-navigation/native';
+import {useIsFocused, NavigationProp} from '@react-navigation/native';
 
 import avatar from '../assets/images/Avatar2.png';
 import computer from '../assets/icons/DesktopTower.png';
@@ -42,7 +42,15 @@ interface ValueProps {
   task: string;
 }
 
-export default function Home({navigation}) {
+interface ItemFilter {
+  id: string;
+  isCompleted: boolean;
+  task: string;
+}
+interface HomeProps {
+  navigation: any;
+}
+export default function Home({navigation}: HomeProps) {
   const [listWork, setListWork] = useState<Array<ListProps>>([]);
   const [listCollege, setListCollege] = useState<Array<ListProps>>([]);
   const [listMarket, setListMarket] = useState<Array<ListProps>>([]);
@@ -56,9 +64,9 @@ export default function Home({navigation}) {
   const [loading, setLoading] = useState<boolean>(false);
   const isFocused = useIsFocused();
 
-  function FilterByIsCompleted(item: any) {
-    const tasks = item.filter((item: any) => {
-      return item.isCompleted === true;
+  function FilterByIsCompleted(item: ItemFilter[]) {
+    const tasks = item.filter(i => {
+      return i.isCompleted === true;
     });
     return tasks.length;
   }
